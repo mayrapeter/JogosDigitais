@@ -5,9 +5,11 @@ using UnityEngine;
 public class BlocoSpawner : MonoBehaviour
 {
     public GameObject Bloco;
+    
     GameManager gm;
     void Start()
     {
+        
         gm = GameManager.GetInstance();
         GameManager.changeStateDelegate += Construir;
         Construir();
@@ -17,7 +19,6 @@ public class BlocoSpawner : MonoBehaviour
     {
         if (gm.gameState == GameManager.GameState.GAME)
         {
-            
             foreach (Transform child in transform) {
                 GameObject.Destroy(child.gameObject);
             }
@@ -31,7 +32,7 @@ public class BlocoSpawner : MonoBehaviour
                     Bloco meutijolo = tijolo.GetComponent<Bloco>();
                     if (num == 0){
                         tijolo.GetComponent<Renderer>().material.color = Color.red;
-                        meutijolo.resistencia = 4;
+                        meutijolo.resistencia = 3;
                     } else if (num == 1){
                         tijolo.GetComponent<Renderer>().material.color = Color.blue;
                         meutijolo.resistencia = 2;
@@ -46,7 +47,6 @@ public class BlocoSpawner : MonoBehaviour
 
     void Update()
     {
-
         if (transform.childCount <= 0 && gm.gameState == GameManager.GameState.GAME)
         {
             gm.ChangeState(GameManager.GameState.ENDGAME);

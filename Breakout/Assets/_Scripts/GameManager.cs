@@ -42,6 +42,7 @@ public class GameManager
 
     private void Reset()
     {
+        
         vidas = 3;
         pontos = 0;
     }
